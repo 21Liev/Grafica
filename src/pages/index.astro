@@ -1,0 +1,684 @@
+---
+import Layout from '../layouts/Layout.astro';
+import "../styles/global.css"; 
+import logo from "../assets/logo.png";
+---
+<Layout title="Graficador"> 
+  <!------------------Inicio---------------->
+  <div id="Ini" class="flex justify-center bg-[#ffffff56] shadow-[#0b110ed7] shadow-2xl border border-[#27ff9307] rounded-br-full">
+    <h1><img src={logo.src} alt="logo"></h1>
+  </div>
+  <!------------------Seccion del sub y los botones---------------->
+<section>
+    <div class="text-center text-[#1f3a2d] mt-24 text-3xl font-bold animate-bounce">
+    <h2>GRÁFICA CONTIENE VARIAS HERRAMIENTAS MATEMATICAS PARA TÍ:</h2>
+      </div>    
+    <div class="justify-center flex p-10 space-x-4">
+      <a href="#gFun">
+        <button class="p-2 w-52 h-16 font-bold bg-[#194d32] text-white shadow-[#0b110e98] shadow-xl rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black justify-center">Graficador de funciones</button>
+      </a>
+      <a href="#Smov">
+        <button class="p-2 w-52 h-16 font-bold bg-[#194d32] text-white shadow-[#0b110e98] shadow-xl rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black justify-center">Simulador de movimiento</button>
+      </a>
+      <a href="#Cdif">
+        <button class="p-2 w-52 h-16 font-bold bg-[#194d32] text-white shadow-[#0b110e98] shadow-xl rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black justify-center">Calculadora de ec diferenciales</button>
+      </a>
+    </div>
+  </section>
+  
+<!------------------Primera isla / Graficador de funciones---------------->
+<section class="shadow-[#0b110ed7] shadow-2xl p-8 mt-9 pb-20 bg-[#ffffff56]">
+<!------------------Titulo de la isla---------------->  
+  <div class="text-center text-[#1f3a2d] text-3xl font-bold">
+    <h3 id="gFun">GRAFICADOR DE FUNCIONES:</h3>
+  </div>
+<!------------------Seccion para las instrucciones---------------->
+    <section class="w-full max-w-4xl mx-auto mt-10 justify-center">
+      <div class="justify-center">
+        <div class="p-6 bg-white rounded-lg shadow-2xl">
+          <h4 class="text-center text-2xl font-bold text-[#25503a] mb-4">Instrucciones:</h4>
+            <p class="text-lg text-[#25503a] text-center font-medium">Escribe una función matemática en el campo de texto y presiona el botón "Graficar", puedes guardar funciones y verlas representadas graficamente.</p>
+          <ul class="list-disc list-inside mt-4 text-lg text-[#25503a]">
+        </div>
+      </div>
+      </section>
+<!------------------Carta del plano---------------->
+  <div class="flex justify-center mt-10 gap-8">
+<!----------------Carta para la Gráfica------------------>
+    <div class="p-6 bg-white rounded-lg w-full max-w-2xl shadow-[#0b110ed7] shadow-2xl">
+      <h5 class="text-center text-2xl font-medium text-[#25503a] mb-4">Plano Cartesiano</h5>
+        <div id="cartesian-plot1" class="w-full h-96 shadow-[#0b110e62] font-medium rounded-lg text-lg text-center mb-4 shadow-xl bg-gray-100"> 
+        </div>
+<!------------------Selector del graficador---------------->
+        <div class="text-center mt-4">
+          <label for="graph-type-selector" class="text-lg font-medium text-[#25503a]">Selecciona el tipo de gráfico:</label>
+            <select id="graph-type-selector" class="w-full max-w-xs mt-2 p-2 border rounded-lg text-lg font-medium text-[#25503a]">
+              <option value="scatter">Líneas                  
+                </option>
+              <option value="bar">Barras                  
+                </option>
+              <option value="scatter+text">Puntos
+                </option>
+            </select>
+          </div>
+    </div>
+<!------------------Carta de la calculadora---------------->
+  <div class="p-6 bg-white shadow-2xl shadow-[#0b110ed7] rounded-lg w-full max-w-md">
+    <h6 class="text-center text-2xl font-medium text-[#25503a] mb-4">Calculadora de Funciones</h6>
+      <input type="text" id="function-input" placeholder="Escribe una función, ej: 2x+5" class="w-full p-2 border border-[#2c5f451c] rounded-lg text-lg text-center mb-4 shadow-xl" />
+<!------------------Calculadora---------------->
+        <div class="p-4 bg-gray-100 rounded-lg shadow-lg shadow-gray-400">
+          <div id="scientific-calculator" class="grid grid-cols-4 gap-2 font-medium">
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('7')">7</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('8')">8</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('9')">9</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('+')">+</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('4')">4</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('5')">5</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('6')">6</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('-')">-</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('1')">1</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('2')">2</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('3')">3</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('*')">*</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('0')">0</button>
+            <button class="p-2 bg-white border rounded transition-all duration-500 hover:bg-[#2c5f45] hover:text-white" onclick="addToInput('.')">.</button>          
+            <button class="p-2 bg-[#194d32] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="clearInput()">C</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('/')">/</button>
+            <button class="p-2 bg-[#3f6853] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('sin(')">sin</button>
+            <button class="p-2 bg-[#3f6853] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('cos(')">cos</button>
+            <button class="p-2 bg-[#3f6853] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('tan(')">tan</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('^')">^</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('x')">x</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('(')">(</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput(')')">)</button>
+            <button class="p-2 bg-[#486958] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="addToInput('sqrt(')">√</button>
+            <button class="col-span-4 p-2 bg-[#194d32] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="plotFunction()">Graficar</button>
+            <button class="col-span-4 p-2 bg-[#194d32] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black" onclick="saveFunction()">Guardar función</button>
+          </div>
+        </div>  
+  </div>
+<!------------------Carta para controlar funciones---------------->
+    <div class="p-6 bg-white shadow-2xl shadow-[#0b110ed7] rounded-lg w-full max-w-md">
+      <h7 class="text-center text-2xl font-medium text-[#25503a] mb-4">Control de Funciones</h7>
+        <button 
+        id="add-function-button"
+          class="w-full p-3 mb-4 bg-[#25503a] text-white border rounded-lg transition-all duration-500 hover:bg-[#86c2a3] hover:text-black"
+          onclick="removeFunction()">Eliminar ultima función</button>
+<!------------------Lista para funciones---------------->
+        <div id="functions-list" class="mt-4 text-center">
+          <h8 class="text-lg font-medium text-[#25503a]">Funciones guardadas:</h8>
+          <ul id="functions-list-ul" class="list-none mt-2 rounded-lg text-lg text-center mb-4 shadow-xl bg-gray-100">        
+            </ul>
+        </div>
+    </div>
+  </div>
+</section>
+<!------------------Segunda isla isla / Simulador de movimiento---------------->
+<section class="mb-44">
+<!------------------Titulo---------------->
+  <div class="text-center text-[#1f3a2d] mt-24 text-3xl font-bold">
+    <h9 id="Smov">SIMULADOR DE MOVIMIENTO (FÍSICA):</h9>
+  </div>
+<!------------------Instrucciones---------------->
+  <section class="w-full max-w-4xl mx-auto mt-10 justify-center">
+    <div class="justify-center">
+      <div class="p-6 bg-white rounded-lg shadow-2xl">
+        <h10 class="text-center text-2xl font-bold text-[#25503a] mb-4">Instrucciones:</h10>
+          <p class="text-lg text-[#25503a] text-center font-medium">Agrega los parametros y disfruta de la simulación.<br>¡Recuerda que la posición inicial no es 0 pueden varias los datos!</p>
+        <ul class="list-disc list-inside mt-4 text-lg text-[#25503a]">
+      </div>
+    </div>
+  </section>
+<!------------------Carta para la animacion---------------->
+  <div class="flex justify-center mt-10 gap-8">
+    <div class="p-6 bg-white rounded-lg w-full max-w-2xl shadow-[#0b110ed7] shadow-2xl">
+      <div class="mt-6 w-full h-48 bg-gray-100 rounded-lg relative overflow-hidden shadow-[#0b110e6c] shadow-2xl border-collapse border-[#0b110e17]">
+<!---------------Líneas del plano cartesiano (Plano de fondo)---------------->
+        <div class="absolute inset-0 grid grid-cols-10 gap-0.5">
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+          <div class="border-l border-dashed border-gray-400"></div>
+        </div>
+<!--------------------Animación del MRU------------------------------>
+        <div id="mru-animation" class="w-full h-full bg-transparent relative">
+<!---------------------Línea de la trayectoria----------------------->
+        <div id="trajectory-line" class="absolute top-1/2 left-0 w-full h-0.5 bg-[#194d32]">
+        </div>          
+<!------------Objeto que se mueve-------------->
+        <div id="moving-object" class="w-10 h-10 bg-[#25503a] rounded-full absolute top-1/2 left-0 transform -translate-y-1/2"></div>
+        </div>
+      </div>
+<!------------------Información de velocidad y aceleración debajo de la animación------------------>
+      <div class="mt-4 font-medium text-[#1a2e23]">
+        <p class="text-lg font-bold text-center mb-5 mt-6">Parametros registrados:</p>
+        <p class="text-lg font-medium">Máxima velocidad alcanzada: <span id="velocity-display">0 m/s</span></p>
+        <p class="text-lg font-medium">Tiempo en recorrer la distancia: <span id="total-time-display">0 s</span></p>
+        <p class="text-lg font-medium">Aceleración: <span id="acceleration-display">0 m/s²</span></p>
+      </div>
+    </div>    
+<!-----------------------Carta para cargar los valores--------------------->
+  <div class="p-6 bg-white rounded-lg w-full max-w-md shadow-[#0b110ed7] shadow-2xl">
+    <h11 class="text-center text-2xl font-medium text-[#25503a] mb-4">Control de Parámetros</h11>      
+      <div class="mb-4">
+        <label for="velocity" class="block text-lg font-medium text-[#25503a]">Velocidad (m/s):</label>
+          <input type="number" id="velocity" placeholder="Ingresa la velocidad" class="w-full p-2 border rounded-lg text-lg" />
+      </div>      
+    <div class="mb-4">
+      <label for="time" class="block text-lg font-medium text-[#25503a]">Tiempo (s):</label>
+        <input type="number" id="time" placeholder="Ingresa el tiempo" class="w-full p-2 border rounded-lg text-lg" />
+    </div>      
+    <div class="mb-4">
+      <label for="distance" class="block text-lg font-medium text-[#25503a]">Distancia (m):</label>
+        <input type="number" id="distance" placeholder="Ingresa la distancia" class="w-full p-2 border rounded-lg text-lg" />
+    </div>
+    <div class="mb-4">
+      <label for="acceleration" class="block text-lg font-medium text-[#25503a]">Aceleración (m/s²):</label>
+        <input type="number" id="acceleration" placeholder="Ingresa la aceleración" class="w-full p-2 border rounded-lg text-lg" />
+    </div>
+    <div class="mb-4">
+      <label for="initial-position" class="block text-lg font-medium text-[#25503a]">Posición Inicial (m):</label>
+        <input type="number" id="initial-position" placeholder="Ingresa la posición inicial" class="w-full p-2 border rounded-lg text-lg" />
+    </div>    
+      <button class="p-2 bg-[#194d32] text-white border rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black justify-center" onclick="startMRUV()">Iniciar MRUV</button>
+  </div>
+</div>
+</section>
+<!------------------Tercera isla isla / Graficador ec diferenciales---------------->
+<section class="shadow-[#0b110ed7] shadow-2xl p-8 mt-9 pb-20 bg-[#ffffff56] mb-28">
+<!------------------Titulo---------------->
+  <div class="text-center text-[#1f3a2d] text-3xl font-bold">
+    <h10 id="Cdif">CALCULADORA DE ECUACIONES DIFERENCIALES:</h10>
+  </div>
+<!------------------Instrucciones--------------->  
+  <section class="w-full max-w-4xl mx-auto mt-10 justify-center">
+    <div class="justify-center">
+      <div class="p-6 bg-white rounded-lg shadow-2xl">
+        <h12 class="text-center text-2xl font-bold text-[#25503a] mb-4">Instrucciones:</h12>
+          <p class="text-lg text-[#25503a] text-center font-medium">Escribe una función matemática en el campo de texto y presiona el botón "Graficar", puedes guardar funciones y verlas representadas graficamente.</p>
+        <ul class="list-disc list-inside mt-4 text-lg text-[#25503a]">
+      </div>
+    </div>
+  </section>
+ <!------------------Cartas para resolver ecu--------------->     
+  <section class="w-full mx-auto mt-10 justify-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">          
+      <div class="p-6 bg-white rounded-lg shadow-2xl shadow-[#0b110ed7]">
+        <h13 class="text-center text-2xl font-bold text-[#25503a] mb-4">Resolver Ecuación Diferencial</h13>
+          <p class="text-lg text-[#25503a] text-center font-medium">Ingresa una ecuación diferencial y presiona "Resolver".</p>            
+            <div class="mt-4">
+              <label for="equation" class="block text-lg font-medium text-[#25503a]">Ecuación diferencial:</label>
+                <input type="text" id="equation" class="w-full p-2 mt-2 border rounded-lg" placeholder="Ejemplo: dy/dx = x + y">
+            </div>    
+              <button id="solveButton" class="mt-4 w-full bg-[#25503a] text-white font-bold py-2 rounded-lg">Resolver</button>            
+            <div id="solution" class="mt-4 p-4 bg-gray-100 rounded-lg text-[#25503a] text-lg font-medium">
+              <p class="text-center">Solución aparecerá aquí</p>
+            </div>
+      </div>    
+<!------------------Carta para graficar--------------->  
+  <div class="p-8 bg-bl rounded-lg shadow-2xl shadow-[#0b110ed7] w-3/4 mx-auto bg-white">
+    <h14 class="text-center text-2xl font-bold text-[#25503a] mb-4">Graficar Ecuación</h14>
+      <p class="text-lg text-[#25503a] text-center font-medium">Ingrese la misma ecuación para graficarla.</p>            
+<!------------------Selector--------------->  
+        <div class="mb-4">
+          <label for="graph-type-selector2" class="block text-lg font-medium text-[#25503a]">Tipo de gráfico:</label>
+            <select id="graph-type-selector2" class="w-full p-2 mt-2 border rounded-lg">
+              <option value="scatter">Líneas</option>
+              <option value="scatter+text">Puntos</option>
+              <option value="bar">Barras</option>
+            </select>
+          </div>          
+<!------------------Selección para graficar--------------->  
+          <div id="cartesian-plot2" class="w-full h-96 shadow-[#0b110e62] font-medium rounded-lg text-lg text-center mb-4 shadow-xl bg-gray-100"></div>
+          </div>
+        </div>    
+      </div>
+    </section>
+  </section>
+<!------------------Boton al cielo---------------->
+<div class="flex justify-center mb-10">
+    <a href="#Ini">
+      <button class="p-2 w-52 h-16 font-bold bg-[#194d32] text-white shadow-[#0b110e98] shadow-xl rounded transition-all duration-500 hover:bg-[#86c2a3] hover:text-black">Volver al inicio</button>
+    </a>
+</div>
+<!-- Cargar librerías -->
+  <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.24.1/plotly.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.0/math.min.js"></script>
+<!--Graficador -->
+  <script>
+  import { create, all } from "mathjs";
+
+  declare global {
+    interface Window {
+      startMRU: () => void;
+      startMRUV: () => void;
+    }
+  }
+
+  declare global {
+    interface Window {
+      plotFunction: () => void;
+    }
+  }
+
+  declare global {
+    const Plotly: any;
+  }
+  const math = create(all);
+  const { range } = math;
+
+  
+
+  document.addEventListener('DOMContentLoaded', function () {
+  const inputElement = document.getElementById('function-input');
+
+  // Función para agregar texto al campo de entrada
+  (window as any).addToInput = function(value: string) {
+    if (inputElement instanceof HTMLInputElement) {
+      inputElement.value += value;
+    }
+  };
+
+  // Función para limpiar el campo de entrada
+  (window as any).clearInput = function() {
+    if (inputElement instanceof HTMLInputElement) {
+      inputElement.value = '';
+    }
+  };
+
+  // Función para graficar la función ingresada
+  let functionsList: string[] = [];  // Almacenar las funciones agregadas por el usuario
+
+  window.plotFunction = function() {
+  const plotElement = document.getElementById('cartesian-plot1');
+  const selectorElement = document.getElementById('graph-type-selector');
+  const functionsListUl = document.getElementById('functions-list-ul');
+
+  if (!plotElement || !selectorElement || !functionsListUl) {
+    console.error('Elementos no encontrados');
+    return;
+  }
+
+  const selectedGraphType = (selectorElement as HTMLSelectElement).value;
+  const plotData: any[] = [];
+
+  // Obtener la función ingresada en el input
+  const inputElement = document.getElementById('function-input') as HTMLInputElement;
+  const newFunc = inputElement ? inputElement.value.trim() : '';
+
+  if (newFunc) {
+    addFunctionToPlot(newFunc, plotData, selectedGraphType);
+  }
+
+  functionsList.forEach(funcStr => {
+    addFunctionToPlot(funcStr, plotData, selectedGraphType);
+  });
+
+  Plotly.newPlot(plotElement, plotData, {
+    title: 'Plano Cartesiano',
+    xaxis: { title: 'Eje X' },
+    yaxis: { title: 'Eje Y' }
+  });
+};
+
+// **Escuchar cambios en el selector**
+document.getElementById('graph-type-selector')?.addEventListener('change', function() {
+  window.plotFunction(); // Se actualiza el gráfico al cambiar el tipo
+});
+
+// **Función auxiliar actualizada**
+function addFunctionToPlot(funcStr: string, plotData: any[], graphType: string) {
+  funcStr = funcStr.replace(/\^/g, '**')
+                   .replace(/\be^/g, 'math.exp')
+                   .replace(/sen/g, 'sin')
+                   .replace(/cos/g, 'cos')
+                   .replace(/tan/g, 'tan')
+                   .replace(/log/g, 'log')
+                   .replace(/sqrt/g, 'sqrt');
+
+  try {
+    const parsedFunc = math.parse(funcStr).compile();
+    const xValues = math.range(-10, 10, 0.1).toArray().map(value => Number(value));
+    const yValues = xValues.map(value => parsedFunc.evaluate({ x: value }));
+
+    let mode = 'lines';
+    if (graphType === 'scatter+text') mode = 'markers'; 
+    if (graphType === 'bar') mode = 'none'; 
+
+    plotData.push({
+      x: xValues,
+      y: yValues,
+      type: graphType === 'bar' ? 'bar' : 'scatter', 
+      mode: mode, 
+      name: funcStr,
+      line: { color: getRandomColor() }
+    });
+  } catch (err) {
+    console.error(`Error en la función: ${funcStr}`, err);
+  }
+};
+
+
+    // Función para agregar una nueva función a la lista
+// Función para guardar una función en la lista sin duplicados
+(window as any).saveFunction = function() {
+  const inputElement = document.getElementById('function-input') as HTMLInputElement | null;
+  if (inputElement && inputElement.value.trim()) {
+    const newFunc = inputElement.value.trim();
+
+    // Verificar si la función ya está en la lista
+    if (!functionsList.includes(newFunc)) {
+      functionsList.push(newFunc);  // Agregar la nueva función a la lista
+      inputElement.value = '';  // Limpiar el campo de entrada
+
+      // Mostrar la función en la lista de funciones guardadas
+      const li = document.createElement('li');
+      li.textContent = newFunc;
+      const functionsListUl = document.getElementById('functions-list-ul');
+      if (functionsListUl) {
+        functionsListUl.appendChild(li);
+      }
+
+      window.plotFunction();  // Actualizar la gráfica
+    } else {
+      console.log('La función ya está guardada.');
+    }
+  }
+};
+
+    // Función para eliminar la última función de la lista
+    (window as any).removeFunction = function() {
+      if (functionsList.length > 0) {
+        const removedFunc = functionsList.pop();  // Eliminar la última función
+        console.log('Función eliminada:', removedFunc);
+
+        // Eliminar la última función de la lista visible
+        const functionsListUl = document.getElementById('functions-list-ul');
+        if (functionsListUl && functionsListUl.lastChild) {
+          functionsListUl.removeChild(functionsListUl.lastChild);
+        }
+
+        window.plotFunction();  // Actualizar la gráfica
+      } else {
+        console.log('No hay funciones para eliminar');
+      }
+    };
+
+    // Función para generar un color aleatorio
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+}); 
+  </script>
+<!-- simulador -->
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  let animationInterval: ReturnType<typeof setInterval> | undefined;
+  const movingObject = document.getElementById('moving-object') as HTMLElement | null;
+  const velocityDisplay = document.getElementById('velocity-display') as HTMLElement | null;
+  const accelerationDisplay = document.getElementById('acceleration-display') as HTMLElement | null;
+  const totalTimeDisplay = document.getElementById('total-time-display') as HTMLElement | null;
+
+  // Función para iniciar la animación con MRUV
+  window.startMRUV = function() {
+    const velocityElement = document.getElementById('velocity') as HTMLInputElement | null;
+    const timeElement = document.getElementById('time') as HTMLInputElement | null;
+    const distanceElement = document.getElementById('distance') as HTMLInputElement | null;
+    const accelerationElement = document.getElementById('acceleration') as HTMLInputElement | null;
+    const initialPositionElement = document.getElementById('initial-position') as HTMLInputElement | null;
+
+    if (!velocityElement || !timeElement || !distanceElement || !accelerationElement || !initialPositionElement) {
+      alert('Por favor, ingresa todos los valores correctamente.');
+      return;
+    }
+
+    const velocity = parseFloat(velocityElement.value); // Velocidad inicial
+    const time = parseFloat(timeElement.value); // Tiempo de simulación
+    const acceleration = parseFloat(accelerationElement.value); // Aceleración
+    const initialPosition = parseFloat(initialPositionElement.value); // Posición inicial
+    let distance = parseFloat(distanceElement.value);
+
+    if (isNaN(velocity) || isNaN(time) || isNaN(distance) || isNaN(acceleration) || isNaN(initialPosition)) {
+      alert('Por favor, ingresa todos los valores correctamente.');
+      return;
+    }
+
+    // Calcular la distancia si no se ha ingresado
+    if (!distance) {
+      distance = velocity * time + 0.5 * acceleration * Math.pow(time, 2); // d = v₀ * t + 1/2 * a * t²
+    }
+
+    // Limpiar cualquier animación previa
+    clearInterval(animationInterval);
+
+    const totalDistance = distance;
+    const duration = time * 1000; // Convertir a milisegundos
+    const step = totalDistance / duration * 16; // Ajustar el paso para cada frame (16ms)
+
+    let position = initialPosition; // Iniciar en la posición inicial
+    let startTime: number | null = null;
+
+    function animate(timestamp: number) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+
+      // Calcular la nueva posición usando la fórmula del MRUV
+      position = initialPosition + velocity * elapsed / 1000 + 0.5 * acceleration * Math.pow(elapsed / 1000, 2);
+
+      if (position >= totalDistance) {
+        position = totalDistance;
+      }
+
+      // Actualizar la posición del objeto
+      if (movingObject) {
+        movingObject.style.left = `${(position / totalDistance) * 100}%`;
+      }
+
+      // Actualizar la velocidad y aceleración
+      if (velocityDisplay && accelerationDisplay) {
+        // Velocidad en cada instante
+        const currentVelocity = velocity + acceleration * (elapsed / 1000); // v = v₀ + at
+        const currentAcceleration = acceleration; // Aceleración constante en MRUV
+
+        // Mostrar la velocidad y aceleración en el DOM
+        velocityDisplay.innerText =`${currentVelocity.toFixed(2)} m/s`;
+        accelerationDisplay.innerText = `${currentAcceleration.toFixed(2)} m/s²`;
+      }
+
+      // Mostrar el tiempo total de simulación
+      if (totalTimeDisplay) {
+        totalTimeDisplay.innerText = `${(elapsed / 1000).toFixed(2)} s`; // Mostrar el tiempo transcurrido
+      }
+
+      // Si no hemos alcanzado la distancia total, seguir animando
+      if (position < totalDistance) {
+        requestAnimationFrame(animate);
+      }
+    }
+
+    // Iniciar la animación
+    requestAnimationFrame(animate);
+  };
+});
+  </script>
+<!-- Resolutor y graficador ec, diferenciales -->
+  <script>
+  import { create, all } from "mathjs";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const math = create(all);
+
+    const solveButton = document.getElementById("solveButton");
+    if (solveButton) {
+        solveButton.addEventListener("click", function () {
+            const equationElement = document.getElementById("equation") as HTMLInputElement | null;
+            if (equationElement) {
+                const equation = equationElement.value.trim();
+
+                if (equation) {
+                    // Limpiar contenido anterior (solución y gráfico)
+                    const solutionElement = document.getElementById("solution");
+                    if (solutionElement) {
+                        solutionElement.innerHTML = '';  // Limpiar solución anterior
+                    }
+
+                    const plotElement = document.getElementById('cartesian-plot2');
+                    if (plotElement) {
+                        Plotly.purge(plotElement);  // Limpiar el gráfico anterior
+                    }
+
+                    // Resolver la ecuación diferencial
+                    const solution = solveDifferentialEquation(equation);
+
+                    if (solution) {
+                        // Mostrar la solución
+                        if (solutionElement) {
+                            solutionElement.innerHTML = `<p class='text-center'>Solución: y(x) ≈ ${solution.yValues[solution.yValues.length - 1]}</p>`;
+                        }
+
+                        // Graficar la solución
+                        const selectorElement = document.getElementById('graph-type-selector2') as HTMLSelectElement;
+                        const selectedGraphType = selectorElement.value;
+
+                        const plotData: any[] = [];
+                        addFunctionToPlot(solution, plotData, selectedGraphType);
+
+                        if (plotElement) {
+                            // Asegúrate de que plotData sea un array con datos válidos
+                            if (plotData.length > 0) {
+                                Plotly.newPlot(plotElement, plotData, {
+                                    title: 'Ecuación Diferencial',
+                                    xaxis: { title: 'Eje X' },
+                                    yaxis: { title: 'Eje Y' }
+                                });
+                            } else {
+                                alert('No se pudieron generar datos para graficar.');
+                            }
+                        }
+                    } else {
+                        alert('No se pudo resolver la ecuación.');
+                    }
+                }
+            }
+        });
+    }
+
+    // Resolver la ecuación diferencial
+    function solveDifferentialEquation(equation: string): any | null {
+        try {
+            // Ecuación: dy/dx = x * y + sin(x)
+            // Parseamos la ecuación ingresada para resolverla numéricamente con el método de Euler
+            const dydx = (x: number, y: number) => x * y + Math.sin(x);  // Esta es la ecuación dy/dx = x * y + sin(x)
+
+            // Inicialización para la integración numérica
+            let x0 = 0; // Valor inicial de x
+            let y0 = 1; // Valor inicial de y (condición inicial)
+            let h = 0.1; // Paso para la integración (método de Euler)
+            let n = 100; // Número de pasos
+
+            let xValues = [x0];
+            let yValues = [y0];
+
+            for (let i = 1; i <= n; i++) {
+                let x = xValues[i - 1];
+                let y = yValues[i - 1];
+                let dydxValue = dydx(x, y);
+                let newY = y + dydxValue * h; // Método de Euler para calcular y en el siguiente paso
+                let newX = x + h;
+
+                xValues.push(newX);
+                yValues.push(newY);
+            }
+
+            // Retornar los valores calculados para graficar
+            return {
+                xValues: xValues,
+                yValues: yValues,
+            };
+
+        } catch (error) {
+            console.error('Error al resolver la ecuación diferencial:', error);
+            return null;
+        }
+    }
+
+    // Función auxiliar para agregar la solución al gráfico
+    function addFunctionToPlot(solution: any, plotData: any[], graphType: string) {
+        const { xValues, yValues } = solution;
+
+        // Verificar si los datos están bien formateados
+        if (!xValues || !yValues || xValues.length === 0 || yValues.length === 0) {
+            console.error("No se generaron datos válidos para graficar.");
+            return;
+        }
+
+        let mode = 'lines';
+        if (graphType === 'scatter+text') mode = 'markers';
+        if (graphType === 'bar') mode = 'none';
+
+        plotData.push({
+            x: xValues,
+            y: yValues,
+            type: graphType === 'bar' ? 'bar' : 'scatter',
+            mode: mode,
+            name: 'Solución',
+            line: { color: getRandomColor() }
+        });
+    }
+
+    // Función para generar un color aleatorio
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // Agregar un evento para cambiar el tipo de gráfico
+    const graphTypeSelector = document.getElementById('graph-type-selector2');
+    if (graphTypeSelector) {
+        graphTypeSelector.addEventListener('change', function () {
+            const plotElement = document.getElementById('cartesian-plot2');
+            const selectorElement = document.getElementById('graph-type-selector2') as HTMLSelectElement;
+            const selectedGraphType = selectorElement.value;
+
+            if (plotElement) {
+                // Limpiar el gráfico anterior y volver a graficar con el nuevo tipo
+                Plotly.purge(plotElement);
+
+                // Obtener la solución nuevamente y graficar
+                const equationElement = document.getElementById("equation") as HTMLInputElement | null;
+                if (equationElement) {
+                    const solution = solveDifferentialEquation(equationElement.value.trim());
+                }
+                const solution = equationElement ? solveDifferentialEquation(equationElement.value.trim()) : null;
+                if (solution) {
+                    const plotData: any[] = [];
+                    addFunctionToPlot(solution, plotData, selectedGraphType);
+                    Plotly.newPlot(plotElement, plotData, {
+                        title: 'Ecuación Diferencial',
+                        xaxis: { title: 'Eje X' },
+                        yaxis: { title: 'Eje Y' }
+                    });
+                }
+            }
+        });
+    }
+});
+  </script>
+</Layout>

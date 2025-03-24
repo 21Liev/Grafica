@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=9428&format=png&color=1C5523" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://cdn.plot.ly/plotly-5.0.0.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Graficador</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+
+	font-family: "Inter Tight", serif;
+	font-optical-sizing: auto;
+	font-weight: <weight>;
+	font-style: normal;
+	scroll-behavior: smooth;
+	background: -webkit-linear-gradient(90deg, #b09d8a,#b7a897,#917c68);
+	background: linear-gradient(90deg, #b09d8a,#b7a897,#917c68);
+  }
+</style>

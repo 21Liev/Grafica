@@ -1,0 +1,22 @@
+{
+  "name": "graficador",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.9",
+    "astro": "^5.3.1",
+    "mathjs": "^14.2.1",
+    "plotly.js": "^3.0.1",
+    "plotly.js-dist": "^3.0.1"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.0",
+    "tailwindcss": "^3.4.17"
+  }
+}
